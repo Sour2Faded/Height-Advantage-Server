@@ -18,5 +18,15 @@ RUN apt-get update && \
 # Set working directory
 WORKDIR /usr/src/app
 
-# Run the server
+# Copy Unity server build files into container
+COPY ./FishNetServer.x86_64 .
+COPY ./FishNetServer_Data ./FishNetServer_Data
+
+# Make the server executable
+RUN chmod +x ./FishNetServer.x86_64
+
+# Expose FishNet port
+EXPOSE 7777
+
+# Run the server in headless mode
 CMD ["./FishNetServer.x86_64", "-batchmode", "-nographics", "-port", "7777"]
