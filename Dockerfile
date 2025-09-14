@@ -18,11 +18,5 @@ RUN apt-get update && \
 # Set working directory
 WORKDIR /usr/src/app
 
-# Copy server build files into container
-COPY ServerBuild/ ./
-
-# Make server executable
-RUN chmod +x FishNetServer.x86_64
-
 # Run the server
 CMD ["./FishNetServer.x86_64", "-batchmode", "-nographics", "-port", "7777"]
